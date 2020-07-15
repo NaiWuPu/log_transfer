@@ -6,10 +6,10 @@ import (
 	"log_transfer/conf"
 	"log_transfer/es"
 	"log_transfer/kafka"
-	"log_transfer/vendor/gopkg.in/ini.v1"
 )
+
 // 将日志数据从kafka 取出来发往ES
-func main()  {
+func main() {
 	// 加载配置文件
 	var cfg = new(conf.LogTransfer)
 	err := ini.MapTo(cfg, "./conf/cfg.ini")
@@ -17,7 +17,7 @@ func main()  {
 		fmt.Printf("init config failed:%v \n", err)
 		return
 	}
-	fmt.Printf("cfg:%v\n",cfg)
+	fmt.Printf("cfg:%v\n", cfg)
 	// 初始化ES
 	// 初始化一个ES的链接 client
 	err = es.Init(cfg.ESCfg.Address, cfg.ESCfg.ChanSize, cfg.ESCfg.Nums)
@@ -32,8 +32,6 @@ func main()  {
 		return
 	}
 
-	select {
-
-	}
+	select {}
 
 }
